@@ -2,26 +2,19 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './LoginForm.styles';
 import { AuthContext } from 'provider/AuthProvider';
+import { useField } from 'hooks/useField';
 
 export default function LoginForm() {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
+  const idField = useField('');
+  const passwordField = useField('');
 
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
-  const handleIdChange = (e) => {
-    setId(e.target.value);
-  };
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
   const handleLoginSubmit = (e) => {
     e.preventDefault();
 
-    if (id === 'test' && password === 'test!234') {
+    if (idField.value === 'test' && passwordField.value === 'test!234') {
       login();
       navigate('/');
     } else {
@@ -37,8 +30,8 @@ export default function LoginForm() {
           id="id"
           type="text"
           placeholder="아이디"
-          value={id}
-          onChange={handleIdChange}
+          value={idField.value}
+          onChange={idField.onChange}
         />
       </S.LoginGroup>
       <S.LoginGroup>
@@ -47,8 +40,8 @@ export default function LoginForm() {
           id="password"
           type="password"
           placeholder="비밀번호"
-          value={password}
-          onChange={handlePassword}
+          value={passwordField.value}
+          onChange={passwordField.onChange}
         />
       </S.LoginGroup>
 

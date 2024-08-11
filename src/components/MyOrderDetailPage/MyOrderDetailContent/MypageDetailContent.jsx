@@ -1,8 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import * as S from './MypageDetailContent.styles'; // 스타일을 정의하는 파일
+import * as S from './MypageDetailContent.styles';
 
-// 예시 데이터
 const orderDetails = [
   { id: 1, itemName: '아이템1' },
   { id: 2, itemName: '아이템2' },
@@ -18,8 +17,7 @@ const orderDetails = [
 
 export default function MypageDetailContent() {
   const { id } = useParams();
-  console.log('id', id);
-  const orderId = parseInt(id, 10);
+  const orderId = parseInt(id);
   const orderDetail = orderDetails.find((order) => order.id === orderId);
 
   if (!orderDetail) {

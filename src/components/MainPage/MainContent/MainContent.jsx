@@ -14,6 +14,7 @@ export default function MainContent() {
     if (isLoggedIn) {
       alert('주문 성공!');
     } else {
+      alert('로그인이 필요합니다');
       navigate('/login');
     }
   };

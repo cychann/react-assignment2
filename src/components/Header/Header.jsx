@@ -5,10 +5,10 @@ import * as S from './Header.styles';
 import { AuthContext } from 'provider/AuthProvider';
 
 export default function Header() {
-  const [activeMenu, setActiveMenu] = useState(null);
+  const [activeMenu, setActiveMenu] = useState('service');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
   const handleClickMenu = (item) => {
     setActiveMenu(item);
@@ -39,37 +39,31 @@ export default function Header() {
             </S.NavItem>
             <S.NavItem
               onClick={() => {
-                logout(); // 로그아웃 함수 호출
                 setActiveMenu(null);
               }}
             >
-              로그아웃
+              <Link to="/logout">로그아웃</Link>
             </S.NavItem>
           </>
         ) : (
           <>
-            <S.NavItem
-              active={activeMenu === 'login'}
-              onClick={() => handleClickMenu('login')}
-            >
-              <Link to="/login">로그인</Link>
-            </S.NavItem>
             <S.NavItem
               active={activeMenu === 'signup'}
               onClick={() => handleClickMenu('signup')}
             >
               <Link to="/sign-up">회원가입</Link>
             </S.NavItem>
+            <S.NavItem
+              active={activeMenu === 'login'}
+              onClick={() => handleClickMenu('login')}
+            >
+              <Link to="/login">로그인</Link>
+            </S.NavItem>
           </>
         )}
       </S.NavList>
 
-      <S.HamburgerButton onClick={toggleMenu}>
-        <div />
-        <div />
-        <div />
-      </S.HamburgerButton>
-
+      <S.HamburgerIcon onClick={toggleMenu} />
       {isMenuOpen && (
         <S.MobileMenuOverlay onClick={toggleMenu}>
           <S.MobileMenu>
@@ -101,20 +95,11 @@ export default function Header() {
                     toggleMenu();
                   }}
                 >
-                  로그아웃
+                  <Link to="/logout">로그아웃</Link>
                 </S.MobileNavItem>
               </>
             ) : (
               <>
-                <S.MobileNavItem
-                  active={activeMenu === 'login'}
-                  onClick={() => {
-                    handleClickMenu('login');
-                    toggleMenu();
-                  }}
-                >
-                  <Link to="/login">로그인</Link>
-                </S.MobileNavItem>
                 <S.MobileNavItem
                   active={activeMenu === 'signup'}
                   onClick={() => {
@@ -123,6 +108,15 @@ export default function Header() {
                   }}
                 >
                   <Link to="/sign-up">회원가입</Link>
+                </S.MobileNavItem>
+                <S.MobileNavItem
+                  active={activeMenu === 'login'}
+                  onClick={() => {
+                    handleClickMenu('login');
+                    toggleMenu();
+                  }}
+                >
+                  <Link to="/login">로그인</Link>
                 </S.MobileNavItem>
               </>
             )}

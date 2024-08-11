@@ -3,7 +3,7 @@ import OrderItem from '../OrderItem/OrderItem';
 import * as S from './MyPageContent.styles';
 
 const orderData = {
-  totalPages: 3,
+  totalPages: 4,
   currentPage: 0,
   content: [
     { id: 1, itemName: '아이템1' },

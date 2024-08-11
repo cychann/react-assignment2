@@ -5,6 +5,7 @@ import MyOrderPage from 'pages/MyOrderPage/MyOrderPage';
 import SignupPage from 'pages/SignupPage/SignupPage';
 import { createBrowserRouter } from 'react-router-dom';
 import MyOrderDetailPage from 'pages/MyOrderDetailPage/MyOrderDetailPage';
+import LogoutPage from 'pages/LogoutPage/LogoutPage';
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path: '/login',
         element: <LoginPage />,
+      },
+      {
+        path: '/logout',
+        element: <LogoutPage />,
       },
       {
         path: '/sign-up',

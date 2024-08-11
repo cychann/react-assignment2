@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IoMdMenu } from 'react-icons/io';
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -35,7 +36,7 @@ export const NavItem = styled.li`
   color: ${({ active }) => (active ? '#61dafb' : '#ffffff')};
 `;
 
-export const HamburgerButton = styled.div`
+export const HamburgerIcon = styled(IoMdMenu)`
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -47,12 +48,7 @@ export const HamburgerButton = styled.div`
   background: transparent;
   border: none;
   z-index: 10;
-
-  div {
-    width: 25px;
-    height: 3px;
-    background-color: #ffffff;
-  }
+  color: white;
 
   @media ${(props) => props.theme.mobile} {
     display: flex;
